@@ -12,6 +12,7 @@ jobs:
       - name: "Build Site with Hugo and Audit"
         uses: danielfdickinson/hugo-action-build-audit@main
         with:
+          source-directory: src
           upload-html-validate-config: true
           upload-npm-json: true
           upload-site-as: unminified-site
