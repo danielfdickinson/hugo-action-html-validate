@@ -1,0 +1,32 @@
+name: "Hugo Validate HTML"
+description: "Validate HTML of a Hugo site"
+inputs:
+  download-site-as:
+    description: "Artifact containing the Hugo site"
+    required: true
+    default: unminified-site
+  output-directory:
+    description: "Location of output site"
+    required: true
+    default: "public"
+  source-directory:
+    description: "Where the source for the site lives"
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: ${{ inputs.download-site-as }}
+    - name: "Extract site and configs"
+      shell: bash
+      run: tar -xf hugo-site.tar
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+        cache: 'npm'
+    - run: npm install
+      shell: bash
+    - name: Validate site HTML
+      shell: bash
+      run: npx html-validate public
