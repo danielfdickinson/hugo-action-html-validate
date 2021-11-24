@@ -37,7 +37,7 @@ The tarball in the artifact pointed to by ``download-site-as`` must be named ``h
 
 ``package.json`` and ``package-lock.json`` are used by ``npm install`` to install ``html-validate`` which does the validation.
 
-``html-validate`` is <https://www.npmjs.com/> with homepage <https://html-validate.org> and uses ``.htmlvalidate.json`` and ``.htmlvalidateignore``.
+``html-validate`` is <https://www.npmjs.com/package/html-validate/> with homepage <https://html-validate.org> and uses ``.htmlvalidate.json`` and ``.htmlvalidateignore``.
 
 
 ### Outputs
