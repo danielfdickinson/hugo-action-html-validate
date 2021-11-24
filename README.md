@@ -5,11 +5,11 @@ GitHub action to validate HTML of a Hugo site
 
 ### Main
 
-![test-build-validate](https://github.com/danielfdickinson/hugo-action-html-validate/actions/workflows/test-build-validate.yml/badge.svg)
+![test-build-validate](https://github.com/danielfdickinson/hugo-action-html-validate/actions/workflows/test-html-validate.yml/badge.svg)
 
 ### Pull Request
 
-![test-build-validate PR](https://github.com/danielfdickinson/hugo-action-html-validate/actions/workflows/test-build-validate.yml/badge.svg?event=pull_request)
+![test-build-validate PR](https://github.com/danielfdickinson/hugo-action-html-validate/actions/workflows/test-html-validate.yml/badge.svg?event=pull_request)
 
 ## Details
 
@@ -44,3 +44,44 @@ The tarball in the artifact pointed to by ``download-site-as`` must be named ``h
 
 None
 
+### Sample usage
+
+```yaml
+name: test-html-validate
+on:
+  pull_request:
+    types:
+      - assigned
+      - opened
+      - synchronize
+      - reopened
+  push:
+    branches:
+      - 'feature**'
+      - main
+      - 'staging**'
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+      - '.gitignore'
+      - '.vscode'
+      - 'scripts'
+jobs:
+  build-unminified-site:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: "Build Site with Hugo and Audit"
+        uses: danielfdickinson/hugo-action-build-audit@v0.1
+        with:
+          source-directory: src
+          upload-html-validate-config: true
+          upload-npm-json: true
+          upload-site-as: unminified-site
+          use-lfs: false
+  validate-unminified-html:
+    needs: build-unminified-site
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Run hugo-action-html-validate
+        uses: danielfdickinson/hugo-action-html-validate
+```
