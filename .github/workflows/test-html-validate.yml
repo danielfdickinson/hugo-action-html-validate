@@ -1,10 +1,22 @@
-name: test-build-validate
+name: test-html-validate
 on:
   pull_request:
+    types:
+      - assigned
+      - opened
+      - synchronize
+      - reopened
   push:
     branches:
+      - 'feature**'
       - main
-      - staging-**
+      - 'staging**'
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+      - '.gitignore'
+      - '.vscode'
+      - 'scripts'
 jobs:
   build-unminified-site:
     runs-on: ubuntu-20.04
