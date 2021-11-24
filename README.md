@@ -30,15 +30,11 @@ Pass/Fail Validation HTML of a site stored in an tarball (artifact) from a previ
 The tarball in the artifact pointed to by ``download-site-as`` must be named ``hugo-site.tar`` and contain the following:
 
 * A subdirectory tree containing the site (default: _public_, optionally defined by ``output-directory``).
-* ``.htmlvalidate.json``
-* (optional) ``.htmlvalidateignore``
-* ``package.json``
-* (recommended) ``package-lock.json``
 
-``package.json`` and ``package-lock.json`` are used by ``npm install`` to install ``html-validate`` which does the validation.
+Needed configuration must exist in the workspace. The best way to do this is to do a shallow checkout of the repo.
 
-``html-validate`` is <https://www.npmjs.com/package/html-validate/> with homepage <https://html-validate.org> and uses ``.htmlvalidate.json`` and ``.htmlvalidateignore``.
-
+* ``package.json`` and ``package-lock.json`` are used by ``npm install`` to install ``html-validate`` which does the validation.
+* ``html-validate`` is <https://www.npmjs.com/package/html-validate/> with homepage <https://html-validate.org> and uses ``.htmlvalidate.json`` and ``.htmlvalidateignore``.
 
 ### Outputs
 
@@ -71,17 +67,16 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: "Build Site with Hugo and Audit"
-        uses: danielfdickinson/hugo-action-build-audit@v0.1
+        uses: danielfdickinson/hugo-action-build-audit@v0.1.0
         with:
           source-directory: src
-          upload-html-validate-config: true
-          upload-npm-json: true
           upload-site-as: unminified-site
           use-lfs: false
   validate-unminified-html:
     needs: build-unminified-site
     runs-on: ubuntu-20.04
     steps:
+      - uses: actions/checkout@v2
       - name: Run hugo-action-html-validate
         uses: danielfdickinson/hugo-action-html-validate
 ```
