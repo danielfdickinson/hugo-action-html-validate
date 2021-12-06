@@ -78,5 +78,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run hugo-action-html-validate
-        uses: danielfdickinson/hugo-action-html-validate
+        uses: danielfdickinson/hugo-action-html-validate@v0.1.1
 ```
