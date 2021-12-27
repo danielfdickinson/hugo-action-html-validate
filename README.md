@@ -3,14 +3,9 @@ GitHub action to validate HTML of a Hugo site
 
 ## Status
 
-### Main
+ARCHIVED: This repository has been archived, renamed, and moved to <https://github.com/danielfdickinson/validate-html-action-hugo-dfd>.
 
-![test-build-validate](https://github.com/danielfdickinson/hugo-action-html-validate/actions/workflows/test-html-validate.yml/badge.svg)
-
-### Pull Request
-
-![test-build-validate PR](https://github.com/danielfdickinson/hugo-action-html-validate/actions/workflows/test-html-validate.yml/badge.svg?event=pull_request)
-
+This repo remains for the benefit of other (mostly archived) repos that depend on it.
 ## Details
 
 **NB**: Currently experimental and not for public consumption. Use at your own risk.
